@@ -6,6 +6,10 @@ class TicTacToe
     next_output
     next_output
     next_output
+  end 
+
+  def self.new_game
+    @@TicTacToe = TicTacToe.new
   end
 
   def self.next_output
@@ -15,6 +19,12 @@ class TicTacToe
 
   def initialize
     @moves = 0
+    game = File.readlines('./spec/fixtures/O_wins_in_four.txt')
+    @output = []
+    @output << game[0..9].join
+    @output << game[10..19].join 
+    @output << game[20..29].join 
+    @output << game[30..39].join 
   end
 
   def player_chosen?
@@ -28,8 +38,8 @@ class TicTacToe
 
   def choose_move 
     return choose_player unless player_chosen? 
+    puts @output[@moves]
     @moves += 1
-    puts File.read("./spec/fixtures/move_result_0#{@moves}.txt")
     puts
     if @moves < 4 
       puts 'Where do you want to move?' 

@@ -33,7 +33,7 @@ class TicTacToe
 
   def choose_move 
     return choose_player unless player_chosen? 
-    puts @board_template
+    puts initial_board
     @moves += 1
     puts
     if @moves < 4 

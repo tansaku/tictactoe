@@ -17,9 +17,12 @@ class TicTacToe
     @@TicTacToe.choose_move 
   end
 
+  attr_writer :game_state
+
   def initialize
     @moves = 0
     @board_template = File.read('./lib/board_template.txt')
+    @game_state = { A1: 'X' }
   end
 
   def player_chosen?
@@ -33,7 +36,7 @@ class TicTacToe
 
   def choose_move 
     return choose_player unless player_chosen? 
-    puts initial_board
+    puts board
     @moves += 1
     puts
     if @moves < 4 
@@ -44,15 +47,15 @@ class TicTacToe
     end
   end
 
-  def initial_board
-    @board_template.gsub(/A1/,'X')
-                   .gsub(/B1/,' ')
-                   .gsub(/C1/,' ')
-                   .gsub(/A2/,' ')
-                   .gsub(/B2/,' ')
-                   .gsub(/C2/,' ')
-                   .gsub(/A3/,' ')
-                   .gsub(/B3/,' ')
-                   .gsub(/C3/,' ')
+  def board
+    @board_template.gsub(/A1/,@game_state.fetch(:A1,' '))
+                   .gsub(/B1/,@game_state.fetch(:B1,' '))
+                   .gsub(/C1/,@game_state.fetch(:C1,' '))
+                   .gsub(/A2/,@game_state.fetch(:A2,' '))
+                   .gsub(/B2/,@game_state.fetch(:B2,' '))
+                   .gsub(/C2/,@game_state.fetch(:C2,' '))
+                   .gsub(/A3/,@game_state.fetch(:A3,' '))
+                   .gsub(/B3/,@game_state.fetch(:B3,' '))
+                   .gsub(/C3/,@game_state.fetch(:C3,' '))
   end
 end

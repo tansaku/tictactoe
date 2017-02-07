@@ -9,7 +9,7 @@ class TicTacToe
   end 
 
   def self.new_game
-    @@TicTacToe = TicTacToe.new
+    @@TicTacToe ||= TicTacToe.new
   end
 
   def self.next_output
@@ -19,12 +19,7 @@ class TicTacToe
 
   def initialize
     @moves = 0
-    game = File.readlines('./spec/fixtures/O_wins_in_four.txt')
-    @output = []
-    @output << game[0..9].join
-    @output << game[10..19].join 
-    @output << game[20..29].join 
-    @output << game[30..39].join 
+    @board_template = File.read('./lib/board_template.txt')
   end
 
   def player_chosen?
@@ -38,14 +33,26 @@ class TicTacToe
 
   def choose_move 
     return choose_player unless player_chosen? 
-    puts @output[@moves]
+    puts @board_template
     @moves += 1
     puts
     if @moves < 4 
       puts 'Where do you want to move?' 
-      STDIN.gets
+      @human_next_move = STDIN.gets
     else
       puts 'O has won!' 
     end
+  end
+
+  def initial_board
+    @board_template.gsub(/A1/,'X')
+                   .gsub(/B1/,' ')
+                   .gsub(/C1/,' ')
+                   .gsub(/A2/,' ')
+                   .gsub(/B2/,' ')
+                   .gsub(/C2/,' ')
+                   .gsub(/A3/,' ')
+                   .gsub(/B3/,' ')
+                   .gsub(/C3/,' ')
   end
 end

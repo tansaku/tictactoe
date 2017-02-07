@@ -1,6 +1,6 @@
 require 'tictactoe'
 
-describe TicTacToe do
+describe 'initial move' do
 
   before { TicTacToe.new_game }
 

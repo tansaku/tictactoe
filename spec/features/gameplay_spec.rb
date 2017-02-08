@@ -37,6 +37,7 @@ describe 'TicTacToe' do
     let(:fourth_output) { game[30..39].join }
 
     it 'should play more than one game' do
+      TicTacToe.game.strategy = TicTacToe::STRATEGY2
       expect(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  
       expect(STDIN).to receive(:gets).and_return 'A2'

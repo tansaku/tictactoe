@@ -12,6 +12,9 @@ TODO
   - [x] find a way to display the board to represent the game state - use template
   - [x] receive the users move and add that to the game state
   - [ ] be able to make a computer move effectively
+    - [x] hard coded strategy
+    - [ ] more effective strategy
+  - [ ] refactor game 
   - [ ] detect winning state
   - [ ] play until game is over
   - [ ] handle illegal moves

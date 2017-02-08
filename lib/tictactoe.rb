@@ -12,17 +12,22 @@ class TicTacToe
     @@game = TicTacToe.new
   end
 
+  def self.game
+    @@game
+  end
+
   def self.next_output
     @@game ||= TicTacToe.new
     @@game.choose_move 
   end
 
-  attr_writer :game_state
+  attr_writer :game_state, :strategy
 
   def initialize
     @moves = 0
     @board_template = File.read('./lib/board_template.txt')
     @game_state = { A1: 'X' }
+    @strategy = STRATEGY1
   end
 
   def player_chosen?
@@ -34,6 +39,9 @@ class TicTacToe
     @player_chosen = STDIN.gets.chomp
   end
 
+  STRATEGY1 = [:B3, :B1, 'O']
+  STRATEGY2 = [:B3, :B1, :C1, 'X']
+
   def choose_move 
     return choose_player unless player_chosen? 
     puts board
@@ -43,9 +51,9 @@ class TicTacToe
       puts 'Where do you want to move?' 
       opponent_move = STDIN.gets.chomp
       @game_state[opponent_move.to_sym] = 'O'
-      @game_state[:B3] = 'X'
+      @game_state[@strategy[@moves-1]] = 'X'
     else
-      puts "#{@player_chosen} has won"
+      puts "#{@strategy == STRATEGY1 ? 'O' : 'X'} has won!"
     end
   end
 

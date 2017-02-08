@@ -7,6 +7,22 @@ describe 'game' do
     expect(ttt).not_to have_ended
   end
 
+  it 'can tell the game is still in play with a few moves' do
+    ttt = TicTacToe.new
+    ttt.game_state = { A1: 'X', B2: 'O', B3: 'X' }
+    expect(ttt).not_to have_ended
+  end
+
+  it 'can tell the game is still in play with more moves' do
+    ttt = TicTacToe.new
+    ttt.game_state = { 
+      A1: 'X', A2: 'X', 
+      B2: 'O', 
+      A1: 'O', B3: 'X'
+    }
+    expect(ttt).not_to have_ended
+  end
+
   it 'can tell the game has ended in a draw' do
     ttt = TicTacToe.new
     ttt.game_state = { 

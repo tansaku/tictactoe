@@ -32,14 +32,19 @@ class TicTacToe
   end
 
   def winner?
-    @game_state[:A1] == @game_state[:B1] && @game_state[:B1] == @game_state[:C1] ||
-    @game_state[:A2] == @game_state[:B2] && @game_state[:B2] == @game_state[:C2] ||
-    @game_state[:A3] == @game_state[:B3] && @game_state[:B3] == @game_state[:C3] ||
-    @game_state[:A1] == @game_state[:B2] && @game_state[:B2] == @game_state[:C3] ||
-    @game_state[:A3] == @game_state[:B2] && @game_state[:B2] == @game_state[:C1] ||
-    @game_state[:A1] == @game_state[:A2] && @game_state[:A2] == @game_state[:A3] ||
-    @game_state[:B1] == @game_state[:B2] && @game_state[:B2] == @game_state[:B3] ||
-    @game_state[:C1] == @game_state[:C2] && @game_state[:C2] == @game_state[:C3]
+    same_and_not_nil?(:A1,:B1,:C1) ||
+    same_and_not_nil?(:A2,:B2,:C2) ||
+    same_and_not_nil?(:A3,:B3,:C3) ||
+    same_and_not_nil?(:A1,:B2,:C3) ||
+    same_and_not_nil?(:A3,:B2,:C1) ||
+    same_and_not_nil?(:A1,:A2,:A3) ||
+    same_and_not_nil?(:B1,:B2,:B3) ||
+    same_and_not_nil?(:C1,:C2,:C3)
+  end
+
+  def same_and_not_nil?(x,y,z)
+    return false if @game_state[x].nil? || @game_state[y].nil? || @game_state[z].nil?
+    @game_state[x] == @game_state[y] && @game_state[y] == @game_state[z]
   end
 
   def player_chosen?
@@ -60,13 +65,13 @@ class TicTacToe
     puts board
     @moves += 1
     puts
-    if @moves < 4 
+    if has_ended?
+      puts "#{determine_winner} has won!"
+    else
       puts 'Where do you want to move?' 
       opponent_move = STDIN.gets.chomp
       @game_state[opponent_move.to_sym] = 'O'
       @game_state[@strategy[@moves-1]] = 'X'
-    else
-      puts "#{determine_winner} has won!"
     end
   end
 

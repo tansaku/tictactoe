@@ -1,7 +1,7 @@
 require 'tictactoe'
 
-describe 'initial move' do
-  
+describe 'initial opponent move' do
+
   context 'first move B2' do
 
     let(:game) { File.readlines('./spec/fixtures/O_wins_in_four.txt') }
@@ -9,7 +9,7 @@ describe 'initial move' do
     let(:first_output) { game[0..9].join }
     let(:second_output) { game[10..19].join }
 
-    it 'should present the users first move correctly' do
+    it 'should be presented correctly' do
       TicTacToe.new_game
       allow(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  
@@ -28,7 +28,7 @@ describe 'initial move' do
     let(:first_output) { game[0..9].join }
     let(:second_output) { game[10..19].join }
 
-    it 'should present the users first move correctly' do
+    it 'should be presented correctly' do
       TicTacToe.new_game
       allow(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  

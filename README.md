@@ -15,6 +15,7 @@ TODO
     - [x] hard coded strategy
     - [ ] more effective strategy
   - [ ] refactor game 
+    - [x] could drive from acceptance test for longer game?
   - [ ] detect winning state
   - [ ] play until game is over
   - [ ] handle illegal moves

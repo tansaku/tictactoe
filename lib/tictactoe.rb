@@ -1,11 +1,7 @@
 class TicTacToe
 
   def self.play
-    next_output
-    next_output
-    next_output
-    next_output
-    next_output
+    5.times { next_output } 
   end 
 
   def self.new_game
@@ -30,6 +26,22 @@ class TicTacToe
     @strategy = STRATEGY1
   end
 
+  def has_ended?
+    return false if @game_state.count < 2 
+    @game_state.count == 9 || winner?
+  end
+
+  def winner?
+    @game_state[:A1] == @game_state[:B1] && @game_state[:B1] == @game_state[:C1] ||
+    @game_state[:A2] == @game_state[:B2] && @game_state[:B2] == @game_state[:C2] ||
+    @game_state[:A3] == @game_state[:B3] && @game_state[:B3] == @game_state[:C3] ||
+    @game_state[:A1] == @game_state[:B2] && @game_state[:B2] == @game_state[:C3] ||
+    @game_state[:A3] == @game_state[:B2] && @game_state[:B2] == @game_state[:C1] ||
+    @game_state[:A1] == @game_state[:A2] && @game_state[:A2] == @game_state[:A3] ||
+    @game_state[:B1] == @game_state[:B2] && @game_state[:B2] == @game_state[:B3] ||
+    @game_state[:C1] == @game_state[:C2] && @game_state[:C2] == @game_state[:C3]
+  end
+
   def player_chosen?
     @player_chosen
   end
@@ -39,8 +51,9 @@ class TicTacToe
     @player_chosen = STDIN.gets.chomp
   end
 
-  STRATEGY1 = [:B3, :B1, 'O']
-  STRATEGY2 = [:B3, :B1, :C1, 'X']
+  STRATEGY1 = [:B3, :B1]
+  STRATEGY2 = [:B3, :B1, :C1]
+  STRATEGY3 = [:B3, :B2, :C1, :C2]
 
   def choose_move 
     return choose_player unless player_chosen? 
@@ -53,8 +66,12 @@ class TicTacToe
       @game_state[opponent_move.to_sym] = 'O'
       @game_state[@strategy[@moves-1]] = 'X'
     else
-      puts "#{@strategy == STRATEGY1 ? 'O' : 'X'} has won!"
+      puts "#{determine_winner} has won!"
     end
+  end
+
+  def determine_winner
+    @strategy == STRATEGY1 ? 'O' : 'X'
   end
 
   def board

@@ -9,12 +9,12 @@ class TicTacToe
   end 
 
   def self.new_game
-    @@TicTacToe ||= TicTacToe.new
+    @@game = TicTacToe.new
   end
 
   def self.next_output
-    @@TicTacToe ||= TicTacToe.new
-    @@TicTacToe.choose_move 
+    @@game ||= TicTacToe.new
+    @@game.choose_move 
   end
 
   attr_writer :game_state
@@ -31,7 +31,7 @@ class TicTacToe
 
   def choose_player
     puts 'Which player do you want to be? X or O?'
-    @player_chosen = STDIN.gets
+    @player_chosen = STDIN.gets.chomp
   end
 
   def choose_move 
@@ -41,9 +41,11 @@ class TicTacToe
     puts
     if @moves < 4 
       puts 'Where do you want to move?' 
-      @human_next_move = STDIN.gets
+      opponent_move = STDIN.gets.chomp
+      @game_state[opponent_move.to_sym] = 'O'
+      @game_state[:B3] = 'X'
     else
-      puts 'O has won!' 
+      puts "#{@player_chosen} has won"
     end
   end
 

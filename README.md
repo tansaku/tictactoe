@@ -10,4 +10,8 @@ TODO
 * [x] drop to integration test level to check we can display user move
 * [ ] could keep hard coding but obtuse - let's make it work
   - [x] find a way to display the board to represent the game state - use template
-  - [ ] receive the users move and add that to the game state
+  - [x] receive the users move and add that to the game state
+  - [ ] be able to make a computer move effectively
+  - [ ] detect winning state
+  - [ ] play until game is over
+  - [ ] handle illegal moves

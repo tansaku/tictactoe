@@ -4,7 +4,7 @@ TicTacToe
 To install (assuming Ruby and bundler installed)
 
 ```sh
-$ git clone http://github.com/tansaku/TicTacToe
+$ git clone http://github.com/tansaku/tictactoe
 $ cd TicTacToe
 $ bundle
 ```

@@ -15,6 +15,7 @@ describe 'TicTacToe' do
 
 
     it 'plays successfully' do
+      TicTacToe.game.send(:strategy=, TicTacToe::STRATEGY1)
       expect(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.game.choose_move }.to output("Which player do you want to be? X or O?\n").to_stdout  
       expect(STDIN).to receive(:gets).and_return 'B2'

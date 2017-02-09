@@ -46,7 +46,7 @@ class TicTacToe
     @moves = 0
     @board_template = File.read('./lib/board_template.txt')
     @game_state = { A1: 'X' }
-    @strategy = STRATEGY1
+    @strategy = STRATEGY3
   end
 
   def winner?
@@ -79,8 +79,6 @@ class TicTacToe
   STRATEGY1 = [:B3, :B1]
   STRATEGY2 = [:B3, :B1, :C1]
   STRATEGY3 = [:B3, :B2, :C1, :C2]
-
-
 
   def end_message
     @winner ? "#{@winner} has won!" : "It's a draw!" 

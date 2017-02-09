@@ -1,6 +1,19 @@
 TicTacToe
 =========
 
+To install (assuming Ruby and bundler installed)
+
+```sh
+$ git clone http://github.com/tansaku/TicTacToe
+$ cd TicTacToe
+$ bundle
+```
+To run the tests:
+
+```
+$ bundle exec rspec
+```
+
 To play the game 
 
 ```./ttt```

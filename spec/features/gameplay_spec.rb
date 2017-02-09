@@ -16,14 +16,14 @@ describe 'TicTacToe' do
 
     it 'plays successfully' do
       expect(STDIN).to receive(:gets).and_return 'O'
-      expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  
+      expect { TicTacToe.game.choose_move }.to output("Which player do you want to be? X or O?\n").to_stdout  
       expect(STDIN).to receive(:gets).and_return 'B2'
-      expect { TicTacToe.next_output }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'A3'
-      expect { TicTacToe.next_output }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'C1'
-      expect { TicTacToe.next_output }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
-      expect { TicTacToe.next_output }.to output("#{fourth_output}\n\nO has won!\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{fourth_output}\n\nO has won!\n").to_stdout
     end
 
   end
@@ -37,16 +37,16 @@ describe 'TicTacToe' do
     let(:fourth_output) { game[30..39].join }
 
     it 'plays successfully' do
-      TicTacToe.game.strategy = TicTacToe::STRATEGY2
+      TicTacToe.game.send(:strategy=, TicTacToe::STRATEGY2)
       expect(STDIN).to receive(:gets).and_return 'O'
-      expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  
+      expect { TicTacToe.game.choose_move }.to output("Which player do you want to be? X or O?\n").to_stdout  
       expect(STDIN).to receive(:gets).and_return 'A2'
-      expect { TicTacToe.next_output }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'A3'
-      expect { TicTacToe.next_output }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'C2'
-      expect { TicTacToe.next_output }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
-      expect { TicTacToe.next_output }.to output("#{fourth_output}\n\nX has won!\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{fourth_output}\n\nX has won!\n").to_stdout
     end
 
   end
@@ -61,18 +61,18 @@ describe 'TicTacToe' do
     let(:fifth_output) { game[40..49].join }
 
     it 'plays successfully' do
-      TicTacToe.game.strategy = TicTacToe::STRATEGY3
+      TicTacToe.game.send(:strategy=, TicTacToe::STRATEGY3)
       expect(STDIN).to receive(:gets).and_return 'O'
-      expect { TicTacToe.next_output }.to output("Which player do you want to be? X or O?\n").to_stdout  
+      expect { TicTacToe.game.choose_move }.to output("Which player do you want to be? X or O?\n").to_stdout  
       expect(STDIN).to receive(:gets).and_return 'A2'
-      expect { TicTacToe.next_output }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'A3'
-      expect { TicTacToe.next_output }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'B1'
-      expect { TicTacToe.next_output }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'C3'
-      expect { TicTacToe.next_output }.to output("#{fourth_output}\nWhere do you want to move?\n").to_stdout
-      expect { TicTacToe.next_output }.to output("#{fifth_output}\n\nIt's a draw!\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{fourth_output}\nWhere do you want to move?\n").to_stdout
+      expect { TicTacToe.game.choose_move }.to output("#{fifth_output}\n\nIt's a draw!\n").to_stdout
     end
 
   end

@@ -2,9 +2,9 @@ class TicTacToe
 
   def self.play
     loop do 
-      next_output 
+      game.choose_move 
       if game.has_ended?
-        next_output
+        game.choose_move
         break
       end
     end
@@ -18,9 +18,27 @@ class TicTacToe
     @@game ||= TicTacToe.new
   end
 
-  def self.next_output
-    game.choose_move 
+  def choose_move 
+    return choose_player unless player_chosen? 
+    puts board
+    @moves += 1
+    puts
+    if has_ended?
+      puts end_message
+    else
+      puts 'Where do you want to move?' 
+      opponent_move = STDIN.gets.chomp
+      @game_state[opponent_move.to_sym] = 'O'
+      @game_state[@strategy[@moves-1]] = 'X'
+    end
   end
+
+  def has_ended?
+    return false if @game_state.count < 2 
+    @game_state.count == 9 || winner?
+  end
+
+  private
 
   attr_writer :game_state, :strategy
 
@@ -29,11 +47,6 @@ class TicTacToe
     @board_template = File.read('./lib/board_template.txt')
     @game_state = { A1: 'X' }
     @strategy = STRATEGY1
-  end
-
-  def has_ended?
-    return false if @game_state.count < 2 
-    @game_state.count == 9 || winner?
   end
 
   def winner?
@@ -67,20 +80,7 @@ class TicTacToe
   STRATEGY2 = [:B3, :B1, :C1]
   STRATEGY3 = [:B3, :B2, :C1, :C2]
 
-  def choose_move 
-    return choose_player unless player_chosen? 
-    puts board
-    @moves += 1
-    puts
-    if has_ended?
-      puts end_message
-    else
-      puts 'Where do you want to move?' 
-      opponent_move = STDIN.gets.chomp
-      @game_state[opponent_move.to_sym] = 'O'
-      @game_state[@strategy[@moves-1]] = 'X'
-    end
-  end
+
 
   def end_message
     @winner ? "#{@winner} has won!" : "It's a draw!" 

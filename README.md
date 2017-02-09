@@ -16,7 +16,9 @@ $ bundle exec rspec
 
 To play the game 
 
-```./ttt```
+```
+./ttt
+```
 
 You will be asked to choose a player 'O' or 'X'.  At the moment the computer always goes first, and you will be asked to specify the location you want to place your marker in letter, number order, e.g. A1, B2 etc.
 
@@ -32,7 +34,7 @@ Moving foward I'd like to implement strategies for the computer that were based 
 
 That current code is in a single class that is under 100 lines, and while it could be broken out into sub-classes such as board, strategy and so on, I'm thinking that's slightly premature in this instance.  For this development I focused on setting up an outside-in approach where we could see complete end-to-end acceptance tests.  To my mind the next steps would be to add more acceptance tests to check that collisions and different player markers are handled correctly.  That would likely push the code over the 100 line limit and then the most appropriate way to refactor the code into separate classes would become clear.
 
-TODO
+###TODO
 
 * [x] play a different game than the example
 * [x] might be nice to have full game in one file
@@ -55,3 +57,21 @@ TODO
   - [x] could drive from acceptance test for longer game?
   - [ ] extract other domain entities
   - [ ] extract an engine that doesn't rely on STDIN/STDOUT
+
+
+###Early Notes
+
+I started working on this problem by reading back and forth over the [spec](specifications.md) and thinking I would test drive using Rspec
+
+I thought there's probably a nice ruby gem for generating terminal tables. searched google for "print table on terminal ruby gem"
+
+I found these two:
+
+* https://github.com/tj/terminal-table
+* https://github.com/aptinio/text-table
+
+The former had order of magnitude more stars so thought I'd probably use that.
+
+Given the spec showed a particular game, I thought the simplest way to start would be to write acceptance test in RSpec that drive precisely that, writing the minimum amount of code to get the result, and worrying about detecting game states etc. later
+
+Then I set up a local git repo and had a look at https://github.com/cucumber/aruba after vanilla rspec seemed not so good for testing off a sequence of interactions, but eventually settled on the style seen in the acceptance tests in the repo  

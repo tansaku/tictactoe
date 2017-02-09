@@ -22,15 +22,18 @@ class TicTacToe
     return choose_player unless player_chosen? 
     puts board
     @moves += 1
-    puts
-    if has_ended?
-      puts end_message
+    unless has_ended?
+      handle_opponent_move
     else
-      puts 'Where do you want to move?' 
-      opponent_move = STDIN.gets.chomp
-      @game_state[opponent_move.to_sym] = 'O'
-      @game_state[@strategy[@moves-1]] = 'X'
+      puts end_message 
     end
+  end
+
+  def handle_opponent_move
+    puts 'Where do you want to move?' 
+    opponent_move = STDIN.gets.chomp
+    @game_state[opponent_move.to_sym] = 'O'
+    @game_state[@strategy[@moves-1]] = 'X'
   end
 
   def has_ended?

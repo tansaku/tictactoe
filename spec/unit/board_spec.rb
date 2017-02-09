@@ -4,9 +4,9 @@ describe 'board' do
 
   let(:game) { File.readlines('./spec/fixtures/O_wins_in_four.txt') }
 
-  let(:first_output) { game[0..9].join }
-  let(:second_output) { game[10..19].join }
-  let(:third_output) { game[20..29].join }
+  let(:first_output) { game[0..9].join << "\n" }
+  let(:second_output) { game[10..19].join << "\n" }
+  let(:third_output) { game[20..29].join << "\n" }
 
   it 'initially has X in A1 and nothing else' do
     expect(TicTacToe.new.send(:board)).to eq first_output

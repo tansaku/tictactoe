@@ -9,19 +9,19 @@ describe 'board' do
   let(:third_output) { game[20..29].join << "\n" }
 
   it 'initially has X in A1 and nothing else' do
-    expect(TicTacToe.new.send(:board)).to eq first_output
+    expect(TicTacToe.new.send(:board_with_current_state)).to eq first_output
   end
 
   it 'correctly reflects game state with three moves' do
     ttt = TicTacToe.new
     ttt.send(:game_state=, { A1: 'X', B2: 'O', B3: 'X'})
-    expect(ttt.send(:board)).to eq second_output
+    expect(ttt.send(:board_with_current_state)).to eq second_output
   end
 
   it 'correctly reflects game state with five moves' do
     ttt = TicTacToe.new
     ttt.send(:game_state=, { A1: 'X', B1: 'X', B2: 'O', A3: 'O', B3: 'X'})
-    expect(ttt.send(:board)).to eq third_output
+    expect(ttt.send(:board_with_current_state)).to eq third_output
   end
 
 end

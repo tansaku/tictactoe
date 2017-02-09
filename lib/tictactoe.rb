@@ -2,9 +2,9 @@ class TicTacToe
 
   def self.play
     loop do 
-      game.choose_move 
+      take_a_turn 
       if game.has_ended?
-        game.choose_move
+        take_a_turn
         break
       end
     end
@@ -18,9 +18,13 @@ class TicTacToe
     @@game ||= TicTacToe.new
   end
 
-  def choose_move 
+  def self.take_a_turn
+    game.display_game_state_and_handle_game_turn
+  end
+
+  def display_game_state_and_handle_game_turn 
     return choose_player unless player_chosen? 
-    puts board
+    puts board_with_current_state
     @moves += 1
     unless has_ended?
       handle_opponent_move
@@ -87,7 +91,7 @@ class TicTacToe
     @winner ? "#{@winner} has won!" : "It's a draw!" 
   end
 
-  def board
+  def board_with_current_state
     @board_template.gsub(/A1/,@game_state.fetch(:A1,' '))
                    .gsub(/B1/,@game_state.fetch(:B1,' '))
                    .gsub(/C1/,@game_state.fetch(:C1,' '))

@@ -32,7 +32,9 @@ All the tests use a little under the hood knowledge about the code to reach in a
 
 Moving foward I'd like to implement strategies for the computer that were based on some randomness, and then the tests could set the random seed in order to be appropriately deterministic.  Then the tests could be adjusted to be more behavioural.
 
-That current code is in a single class that is under 100 lines, and while it could be broken out into sub-classes such as board, strategy and so on, I'm thinking that's slightly premature in this instance.  For this development I focused on setting up an outside-in approach where we could see complete end-to-end acceptance tests.  To my mind the next steps would be to add more acceptance tests to check that collisions and different player markers are handled correctly.  That would likely push the code over the 100 line limit and then the most appropriate way to refactor the code into separate classes would become clear.
+That current code is in a single class that was under 100 lines, and while it could be broken out into sub-classes such as board, strategy and so on, I'm thinking that's slightly premature in this instance.  For this development I focused on setting up an outside-in approach where we could see complete end-to-end acceptance tests.  To my mind the next steps would be to add more acceptance tests to check that collisions and different player markers are handled correctly.  That would likely push the code over the 100 line limit and then the most appropriate way to refactor the code into separate classes would become clear.
+
+I've started refactoring a little to improve the quality of the method names, and that has pushed things over a 100 lines - time for more clean up!
 
 ###TODO
 

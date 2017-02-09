@@ -18,7 +18,7 @@ describe 'game' do
     ttt.send(:game_state=, {
       A1: 'X', A2: 'X', 
       B2: 'O', 
-      A1: 'O', B3: 'X'
+      A3: 'O', B3: 'X'
     })
     expect(ttt).not_to have_ended
   end

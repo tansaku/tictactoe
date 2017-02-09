@@ -1,7 +1,13 @@
 class TicTacToe
 
   def self.play
-    5.times { next_output } 
+    loop do 
+      next_output 
+      if game.has_ended?
+        next_output
+        break
+      end
+    end
   end 
 
   def self.new_game
@@ -9,12 +15,11 @@ class TicTacToe
   end
 
   def self.game
-    @@game
+    @@game ||= TicTacToe.new
   end
 
   def self.next_output
-    @@game ||= TicTacToe.new
-    @@game.choose_move 
+    game.choose_move 
   end
 
   attr_writer :game_state, :strategy
@@ -44,7 +49,9 @@ class TicTacToe
 
   def same_and_not_nil?(x,y,z)
     return false if @game_state[x].nil? || @game_state[y].nil? || @game_state[z].nil?
-    @game_state[x] == @game_state[y] && @game_state[y] == @game_state[z]
+    result = @game_state[x] == @game_state[y] && @game_state[y] == @game_state[z]
+    @winner = @game_state[x] if result
+    result
   end
 
   def player_chosen?
@@ -66,7 +73,7 @@ class TicTacToe
     @moves += 1
     puts
     if has_ended?
-      puts "#{determine_winner} has won!"
+      puts end_message
     else
       puts 'Where do you want to move?' 
       opponent_move = STDIN.gets.chomp
@@ -75,8 +82,8 @@ class TicTacToe
     end
   end
 
-  def determine_winner
-    @strategy == STRATEGY1 ? 'O' : 'X'
+  def end_message
+    @winner ? "#{@winner} has won!" : "It's a draw!" 
   end
 
   def board

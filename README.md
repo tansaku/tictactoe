@@ -18,5 +18,5 @@ TODO
     - [x] could drive from acceptance test for longer game?
     - [ ] extract other domain entities
   - [x] detect winning state
-  - [ ] play until game is over
+  - [x] play until game is over
   - [ ] handle illegal moves

@@ -68,7 +68,7 @@ describe 'TicTacToe' do
       expect { TicTacToe.next_output }.to output("#{first_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'A3'
       expect { TicTacToe.next_output }.to output("#{second_output}\nWhere do you want to move?\n").to_stdout
-      expect(STDIN).to receive(:gets).and_return 'B2'
+      expect(STDIN).to receive(:gets).and_return 'B1'
       expect { TicTacToe.next_output }.to output("#{third_output}\nWhere do you want to move?\n").to_stdout
       expect(STDIN).to receive(:gets).and_return 'C3'
       expect { TicTacToe.next_output }.to output("#{fourth_output}\nWhere do you want to move?\n").to_stdout

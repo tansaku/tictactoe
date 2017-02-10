@@ -5,7 +5,7 @@ class Board
 
   def initialize
     @board_template = File.read('./lib/board_template.txt')
-    @game_state = { A1: 'X' }
+    @game_state = {}
   end
 
   def current_state
@@ -41,7 +41,7 @@ class Board
   end
 
   private
-  # concerned that we are setting winner as side effect
+  # concerned that we are setting winner as side effect (command/query combo)
   def same_and_not_nil?(x,y,z)
     return false if game_state[x].nil? || game_state[y].nil? || game_state[z].nil?
     result = game_state[x] == game_state[y] && game_state[y] == game_state[z]

@@ -10,7 +10,7 @@ describe Board do
   let(:second_output) { game[10..19].join << "\n" }
   let(:third_output) { game[20..29].join << "\n" }
 
-  it 'orrectly reflects game state with one move' do
+  it 'correctly reflects game state with one move' do
     board.game_state = { A1: 'X'}
     expect(board.current_state).to eq first_output
   end

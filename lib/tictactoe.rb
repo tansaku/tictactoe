@@ -26,7 +26,7 @@ class TicTacToe < SimpleDelegator
   end
 
   def display_game_state_and_handle_game_turn 
-    return choose_player unless player_chosen? 
+    return choose_player_and_default_start unless opponent_symbol? 
     puts current_state
     @moves += 1
     unless has_ended?
@@ -39,12 +39,13 @@ class TicTacToe < SimpleDelegator
   def handle_opponent_move
     puts 'Where do you want to move?' 
     opponent_move = STDIN.gets.chomp
-    game_state[opponent_move.to_sym] = 'O'
-    game_state[next_move] = 'X'
+    game_state[opponent_move.to_sym] = opponent_symbol
+    game_state[next_move] = my_symbol
   end
 
   private
 
+  attr_accessor :opponent_symbol
   attr_writer :game_state, :strategy
 
   def initialize(board_klass = Board)
@@ -57,13 +58,18 @@ class TicTacToe < SimpleDelegator
     open_locations.sample
   end
 
-  def player_chosen?
-    @player_chosen
+  def opponent_symbol?
+    opponent_symbol
   end
 
-  def choose_player
+  def my_symbol
+    opponent_symbol == 'O' ? 'X' : 'O'
+  end
+
+  def choose_player_and_default_start
     puts 'Which player do you want to be? X or O?'
-    @player_chosen = STDIN.gets.chomp
+    self.opponent_symbol = STDIN.gets.chomp
+    game_state[:A1] = my_symbol
   end
 
   STRATEGY1 = [:B3, :B1]

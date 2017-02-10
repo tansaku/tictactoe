@@ -17,7 +17,7 @@ $ bundle exec rspec
 To play the game 
 
 ```
-./ttt
+./bin/ttt
 ```
 
 You will be asked to choose a player 'O' or 'X'.  At the moment the computer always goes first, and you will be asked to specify the location you want to place your marker in letter, number order, e.g. A1, B2 etc.
@@ -35,6 +35,8 @@ Moving foward I'd like to implement strategies for the computer that were based 
 That current code is in a single class that was under 100 lines, and while it could be broken out into sub-classes such as board, strategy and so on, I'm thinking that's slightly premature in this instance.  For this development I focused on setting up an outside-in approach where we could see complete end-to-end acceptance tests.  To my mind the next steps would be to add more acceptance tests to check that collisions and different player markers are handled correctly.  That would likely push the code over the 100 line limit and then the most appropriate way to refactor the code into separate classes would become clear.
 
 I've started refactoring a little to improve the quality of the method names, and that has pushed things over a 100 lines - time for more clean up!
+
+Next step should be more acceptance tests to handle those error states ...
 
 ###TODO
 
@@ -58,6 +60,9 @@ I've started refactoring a little to improve the quality of the method names, an
 * [ ] refactor game 
   - [x] could drive from acceptance test for longer game?
   - [ ] extract other domain entities
+    - [x] extracted board class
+    - [ ] encapsulate board better
+    - [ ] extract other entities
   - [ ] extract an engine that doesn't rely on STDIN/STDOUT
 
 

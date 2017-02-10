@@ -5,7 +5,7 @@ To install (assuming Ruby and bundler installed)
 
 ```sh
 $ git clone http://github.com/tansaku/tictactoe
-$ cd TicTacToe
+$ cd tictactoe
 $ bundle
 ```
 To run the tests:
@@ -17,14 +17,14 @@ $ bundle exec rspec
 To play the game 
 
 ```
-./bin/ttt
+$ ./bin/ttt
 ```
 
 You will be asked to choose a player 'O' or 'X'.  At the moment the computer always goes first, and you will be asked to specify the location you want to place your marker in letter, number order, e.g. A1, B2 etc.
 
 At the moment the computer has a very limited randomized strategy, but does have the ability to check if there is a winner and if there is a draw.
 
-At the moment incorrect input and marker collisions are not handled.
+Furthermore incorrect input and marker collisons are not handled.
 
 The game was designed using an outside-in strategy driving from feature tests that checked that certain hard coded games could be played on the terminal.  As the feature (or acceptance) tests were working, development dropped to the integration and unit level.  The process was not watertight, and there are parts of the system that are not currently covered by unit tests.
 

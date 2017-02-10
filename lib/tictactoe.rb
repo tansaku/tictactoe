@@ -40,7 +40,7 @@ class TicTacToe < SimpleDelegator
     puts 'Where do you want to move?' 
     opponent_move = STDIN.gets.chomp
     game_state[opponent_move.to_sym] = 'O'
-    game_state[@strategy[@moves-1]] = 'X'
+    game_state[next_move] = 'X'
   end
 
   private
@@ -50,7 +50,11 @@ class TicTacToe < SimpleDelegator
   def initialize(board_klass = Board)
     super(board_klass.new)
     @moves = 0
-    @strategy = STRATEGY3
+  end
+
+  def next_move
+    return @strategy[@moves-1] if @strategy
+    open_locations.sample
   end
 
   def player_chosen?
@@ -65,6 +69,7 @@ class TicTacToe < SimpleDelegator
   STRATEGY1 = [:B3, :B1]
   STRATEGY2 = [:B3, :B1, :C1]
   STRATEGY3 = [:B3, :B2, :C1, :C2]
+  STRATEGY4 = [:C2, :B3, :C3, :B1]
 
   def end_message
     winner ? "#{winner} has won!" : "It's a draw!" 

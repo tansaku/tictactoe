@@ -33,9 +33,12 @@ class Board
 
   def has_ended?
     return false if @game_state.count < 2 
-    @game_state.count == 9 || winner?
+    winner? || @game_state.count == 9
   end
 
+  def open_locations
+    [:A1, :B1, :C1, :A2, :B2, :C2, :A3, :B3, :C3] - game_state.keys
+  end
 
   private
   # concerned that we are setting winner as side effect

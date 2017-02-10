@@ -11,6 +11,7 @@ describe 'initial opponent move' do
 
     it 'should be presented correctly' do
       TicTacToe.new_game
+      TicTacToe.game.send(:strategy=, TicTacToe::STRATEGY3)
       allow(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.take_a_turn }.to output("Which player do you want to be? X or O?\n").to_stdout  
       allow(STDIN).to receive(:gets).and_return 'B2'
@@ -30,6 +31,7 @@ describe 'initial opponent move' do
 
     it 'should be presented correctly' do
       TicTacToe.new_game
+      TicTacToe.game.send(:strategy=, TicTacToe::STRATEGY3)
       allow(STDIN).to receive(:gets).and_return 'O'
       expect { TicTacToe.take_a_turn }.to output("Which player do you want to be? X or O?\n").to_stdout  
       allow(STDIN).to receive(:gets).and_return 'A2'

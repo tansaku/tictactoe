@@ -61,5 +61,23 @@ describe Board do
     expect(board).to have_ended
   end
 
+  it 'can indicate open locations when only one left' do
+    board.game_state =  {  
+      A1: 'X', B1: 'O',
+      A2: 'O', B2: 'X', C2: 'O',
+      A3: 'X', B3: 'O', C3: 'X',
+    }
+    expect(board.open_locations).to match [:C1]
+  end
+
+  it 'can indicate open locations when several left' do
+    board.game_state =  {  
+      A1: 'X', B1: 'O',
+      B2: 'X', C2: 'O',
+      A3: 'X', C3: 'X',
+    }
+    expect(board.open_locations).to match [:C1, :A2, :B3]
+  end
+
 
 end

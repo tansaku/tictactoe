@@ -26,7 +26,10 @@ At the moment the computer has a very limited randomized strategy, but does have
 
 Furthermore incorrect input and marker collisons are not handled.
 
-The game was designed using an outside-in strategy driving from feature tests that checked that certain hard coded games could be played on the terminal.  As the feature (or acceptance) tests were working, development dropped to the integration and unit level.  The process was not watertight, and there are parts of the system that are not currently covered by unit tests.
+Design
+------
+
+The game was designed using an outside-in strategy driving from feature tests that checked that certain hard coded games could be played on the terminal.  As the feature (or acceptance) tests were working, development dropped to the integration and unit level.  The process was not watertight, and there are parts of the system that are not currently covered by unit tests.  See https://github.com/tansaku/tictactoe2 for an alternate inside-out approach.
 
 Some of the tests use a little under the hood knowledge about the code to reach in and manipulate computer strategy or game state in order to test aspects of the system.  This is not ideal from a BDD perspective since the tests have some knowledge of the internal state, however it allowed quick development given the time constraints.
 
